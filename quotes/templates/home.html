@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if ticker %}
+    {{ticker}}
+{% endif %}
+
+{% if api %}
+    {% if api == "Error..." %}
+        There is an Error with your search. Kindly check.
+    {% else %}
+
+
+    <table class="table table-dark table-hover">
+        <h1>{{ api.companyName }}</h1>
+        <b>{{ api.primaryExchange }} - {{api.latestTime}}</b>
+        
+          <tbody><tr>           
+            <td colspan="2" class="table-active">Current Price: </td>
+            <td>{{ api.latestPrice }} <b>{{api.currency}}</b></td>
+          </tr></tbody>
+
+          <tbody><tr>
+            <td colspan="2" class="table-active">Previous Close: </td>
+            <td>{{ api.previousClose }} <b>{{api.currency}}</b></td>
+          </tr></tbody>
+
+          <tbody><tr>
+            <td colspan="2" class="table-active">Market Cap:</td>
+            <td>{{ api.marketCap }}</td>
+          </tr></tbody>
+
+          <tbody><tr>
+            <td colspan="2" class="table-active">52 Week High: </td>
+            <td>{{ api.week52High }}</td>
+          </tr></tbody>
+
+          <tbody><tr>
+            <td colspan="2" class="table-active">52 Week Low: </td>
+            <td>{{ api.week52Low }}</td>
+          </tr></tbody>
+        
+    </table>
+   
+    {% endif %}
+{% endif %}
+    
+{% endblock %}
